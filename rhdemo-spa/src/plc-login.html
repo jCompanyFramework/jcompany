@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Gerenciador de Sentenças">
+    <meta name="author" content="TJRS and Powerlogic S.A.">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <base href="#{contextUrl}" />
+
+    <title>Rhdemo</title>
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+
+<body class="notification-center" ng-app="rhdemo" ng-controller="LoginController as loginCt" ng-cloak>
+
+<div class="container" style="backg">
+  
+  <div class="row" id="pwd-container">
+    <div class="col-md-4"></div>
+    <alert ng-repeat="msg in messages" type="{{msg.type}}" close="closeMessage($index)">{{msg.message}}</alert>
+    <div class="col-md-4">
+      <section class="login-form">
+        <form method="post" action="#" role="login">
+          <img src="assets/images/topo_site_jaguar.png" class="img-responsive" alt="" />
+          
+          <input type="text" id="inputUsername" class="form-control" autofocus="" required="" placeholder="Usu&aacute;rio" ng-model="username" maxlength="20">
+          
+          <input type="password" id="inputPassword" class="form-control" required="" placeholder="Senha" ng-model="password" maxlength="20">
+          
+          
+          <div class="pwstrength_viewport_progress"></div>
+          
+          
+          <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="isLoading()" ng-click="login($event)">Acessar</button>
+          
+          
+        </form>
+        
+        <div class="form-links">
+          <a href="#">www.powerlogic.org</a>
+        </div>
+      </section>  
+      </div>
+      
+      <div class="col-md-4"></div>
+      
+
+  </div>
+  
+   
+</div>
+    <!-- /container -->
+
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp inject` to automatically populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject -->
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+<style type="text/css">
+    
+
+@CHARSET "UTF-8";
+/*
+over-ride "Weak" message, show font in dark grey
+*/
+
+.progress-bar {
+    color: #333;
+} 
+
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    outline: none;
+}
+
+    .form-control {
+      position: relative;
+      font-size: 16px;
+      height: auto;
+      padding: 10px;
+        @include box-sizing(border-box);
+
+        &:focus {
+          z-index: 2;
+        }
+    }
+
+body {
+    background: url(assets/images/GHr12sH.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.login-form {
+    margin-top: 60px;
+}
+
+form[role=login] {
+    color: #5d5d5d;
+    background: #f2f2f2;
+    padding: 26px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+    form[role=login] img {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 35px;
+    }
+    form[role=login] input,
+    form[role=login] button {
+        font-size: 18px;
+        margin: 16px 0;
+    }
+    form[role=login] > div {
+        text-align: center;
+    }
+    
+.form-links {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 50px;
+}
+    .form-links a {
+        color: #fff;
+    }
+
+</style>
+
+</body>
+
+</html>

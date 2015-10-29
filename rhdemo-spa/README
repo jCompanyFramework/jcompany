@@ -1,0 +1,30 @@
+
+
+RhDemo SPA
+
+	Comandos para instalar as dependências:
+
+		$npm install -g gulp
+
+		$npm install -g bower
+
+
+	Comandos para atualizar dependencias
+
+		$npm install
+
+		$bower install
+
+	Executar node em desenvolvimento:
+
+		$gulp serve
+
+	Executar node em teste unitário:
+		$gulp test
+
+	Executar node em teste funcional:
+		$gulp protractor
+
+	Executar node em produção:
+
+		$gulp

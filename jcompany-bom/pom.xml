@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  																													
+	    			       Jaguar-jCompany Developer Suite.																		
+			    		        Powerlogic 2010-2014.
+			    		    
+		Please read licensing information in your installation directory.Contact Powerlogic for more 
+		information or contribute with this project: suporte@powerlogic.com.br - www.powerlogic.com.br																								
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- Dados do projeto -->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>powerlogic.jaguar.jcompany</groupId>
+	<artifactId>jcompany-bom</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	
+	<packaging>pom</packaging>
+	<name>jCompany BOM</name>
+	
+	<description>
+	
+	<![CDATA[
+		BOM´s (Bill of Materials) são arquivos pom.xml do maven
+		que contém todas as dependências com suas respectivas versões
+		listadas.
+		
+		Ao importá-lo, você estará usando as versões exigidas e suas
+		dependencias.
+		
+		Mais informações em: 
+		http://community.jboss.org/wiki/HowtoaddRichFaces4xtomavenbasedproject
+	]]></description>
+
+	<properties>
+		<version.jcompany>1.0.0-SNAPSHOT</version.jcompany>
+		<version.rs-api>2.0.1</version.rs-api>
+		<version.javaee>6.0</version.javaee>
+		<version.slf4j>1.7.12</version.slf4j>
+		<version.commons-io>2.4</version.commons-io>
+		<version.commons-lang3>3.4</version.commons-lang3>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<version.junit>4.12</version.junit>
+	</properties>
+
+	<!-- Mapeamento de todas as dependências -->
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Java EE 6 provided by AS -->
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-web-api</artifactId>
+				<version>${version.javaee}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>javax.ws.rs-api</artifactId>
+				<version>${version.rs-api}</version>
+			</dependency>
+
+			<!-- SLF4J - API -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+			
+			<!-- SLF4J - Implementation using log4j -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${version.slf4j}</version>
+			</dependency>
+
+			<!-- Apache Commons -->
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${version.commons-io}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${version.commons-lang3}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
+			</dependency>
+
+		</dependencies>						
+
+	</dependencyManagement>
+
+
+	<!-- dependências -->
+	<dependencies>
+		<!-- Java EE 6 provided by AS -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+			
+		<!-- SLF4J - API -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<!-- SLF4J - Implementation using log4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+
+		<!-- Apache Commons -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<!-- 
+		Repositório que será distribuído a aplicação
+		Definição da gerência a distribuição do artefato e arquivos de suporte gerados durante o processo de criação.
+		Informa o repositorio onde os artefatos devem ser enviados  
+	-->
+	<distributionManagement>
+		<repository>
+			<id>powerlogic</id>
+			<name>Repositorio Powerlogic</name>
+			<url>http://archiva.powerlogic.com.br:8080/archiva/repository/powerreleases</url>
+		</repository>
+		<snapshotRepository>
+			<id>powerlogic</id>
+			<name>Repositorio de Snapshots</name>
+			<url>http://archiva.powerlogic.com.br:8080/archiva/repository/powersnapshots</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<build>
+		<!-- Nome sem versão para o Jenkins Pipeline -->
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<!-- Java Code -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<!-- WAR packing -->
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Extension-Name>${project.artifactId}</Extension-Name>
+							<Specification-Vendor>Powerlogic</Specification-Vendor>
+							<Specification-Version>1.0.0</Specification-Version>
+							<Implementation-Vendor-Id>powerlogic.jaguar.jcompany</Implementation-Vendor-Id>
+							<Implementation-Vendor>jCompany</Implementation-Vendor>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Implementation-Build>${project.version}</Implementation-Build>
+							<Weblogic-Application-Version>${project.version}</Weblogic-Application-Version>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<!-- JPA Metamodel -->
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<version>2.2.4</version>
+				<executions>
+					<execution>
+						<id>eclipselink-jpa-metamodel</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<processors>
+								<processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</processor>
+							</processors>
+							<outputDirectory>${project.build.directory}/generated-sources/metamodel</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.persistence</groupId>
+						<artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+						<version>2.5.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<!-- Build helper plugin adds the sources generated by the JPA 2 annotation processor to the compile path -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.9.1</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/metamodel</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>	
+
+	<profiles>
+		<profile>
+			<id>weblogic-deploy</id>
+			<build>
+				<plugins>
+					<!-- Weblogic Deploy -->
+					<plugin>
+						<!-- clean install -P weblogic-deploy -Dadminurl=t3://127.0.0.1:7001 -Dtargets=AdminServer -Duser=weblogic123 -Dpassword=weblogic123 -->
+						<groupId>com.oracle.weblogic</groupId>
+						<artifactId>weblogic-maven-plugin</artifactId>
+						<version>12.1.1.0</version>
+						<configuration>
+							<name>${project.build.finalName}</name>
+							<source>${project.build.directory}/${project.build.finalName}.${project.packaging}</source>
+							<action>redeploy</action>
+							<verbose>true</verbose>
+							<upload>true</upload>
+							<remote>true</remote>
+						</configuration>
+						<executions>
+							<execution>
+								<id>wls-deploy</id>
+								<phase>install</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

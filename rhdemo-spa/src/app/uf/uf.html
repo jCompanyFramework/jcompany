@@ -1,0 +1,53 @@
+<div class="container-fluid">
+
+	<div class="panel .panel-default">
+		<div class=".panel-heading">
+		 Unidades Federativas
+		</div>
+	</div>
+
+	<div class="row header" >
+
+        <div class="col-md-2">
+   
+            <label>Sigla</label>
+            
+        </div>
+
+        <div class="col-md-6">
+           
+            <label>Nome</label>
+			
+        </div>
+
+	</div>
+
+	<div class="row" ng-repeat="row in rows">
+
+		<div class="col-md-2">
+			<input type="text" ng-model="row.uf.sigla" required ="" ng-required="true" maxlength="2" 		class="form-control obrigatorio">
+			<input type="hidden" ng-model="row.uf.id" >
+		    
+		</div>
+
+		<div class="col-md-6">    
+			<input type="text" ng-model="row.uf.nome" required ="" ng-required="true" maxlength="50" class="form-control obrigatorio">     
+		</div>
+
+		<div class="col-sd-2">
+
+		   	<button type="submit" class="btn btn-primary" ng-click="saveRow($index);">
+			  <i class="glyphicon glyphicon-save-file"></i>
+			</button>
+
+			<button type="submit" class="btn btn-danger" ng-click="removeRow($index);" ng-if="row.uf.id">
+			  <i class="glyphicon glyphicon-erase"></i>
+			</button>
+
+		</div>
+
+	</div>
+	<br/>
+
+	
+</div>

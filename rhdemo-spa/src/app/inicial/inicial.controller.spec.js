@@ -1,0 +1,14 @@
+(function() {
+  'use strict';
+
+  describe('controllers', function(){
+   
+
+    beforeEach(module('rhdemo'));
+    beforeEach(inject(function() {
+      
+    }));
+
+    
+  });
+})();

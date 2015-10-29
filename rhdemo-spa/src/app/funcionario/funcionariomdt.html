@@ -1,0 +1,159 @@
+<div class="container-fluid">
+
+	<div class="panel .panel-default">
+		<div class=".panel-heading">
+		 Cadastro de Funcion&aacute;rio
+		</div>
+	</div>
+
+	<div class="row">
+        <div class="col-md-2">
+            
+          	<label>Id:</label>
+  			<input type="text" ng-model="funcionario.id" class="form-control" disabled="disabled">
+           
+        </div>
+
+        <div class="col-md-6">
+           
+            <label>Nome:</label>
+			<input type="text" ng-model="funcionario.nome" class="form-control">
+            
+        </div>
+
+        <div class="col-md-2">
+           
+            <label>CPF:</label>
+			<input type="text" ng-model="funcionario.cpf" class="form-control">
+            
+        </div>
+	</div>
+
+	<div class="row">
+
+	    <div class="col-md-2">
+		    <div ng-controller="datepickerController as dpick" class="form-group">
+	           
+	            <label>Data de Nascimento:</label>
+				<p class="input-group">
+	              <input type="text" name="date" required="" datepicker-popup="{{dpick.format}}" ng-model="funcionario.dataNascimento" is-open="dpick.opened" min-date="dpick.minDate" max-date="'2019-12-22'" datepicker-options="dpick.dateOptions" date-disabled="dpick.disabled(date, mode)"
+	              close-text="Close" class="form-control" />
+	              <span class="input-group-btn">
+	                 <button type="button" ng-click="dpick.open($event)" class="btn btn-default">
+	                    <em class="fa fa-calendar"></em>
+	                 </button>
+	              </span>
+	           </p>
+	        </div>
+	    </div>
+
+        <div class="col-md-6">
+            <label>E-mail:</label>
+			<input type="text" ng-model="funcionario.email" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <div class="checkbox c-checkbox needsclick">
+                <label class="needsclick">
+                	<input type="checkbox" value="" class="needsclick" />
+                    <span class="fa fa-check"></span>
+                    Tem curso superior
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+	    <div class="col-md-4">
+            
+          	<label>Estado Civil:</label>
+  			<select name="estadoCivil" ng-model="funcionario.estadoCivil" class="form-control">
+
+  				<option ng-selected="funcionario.estadoCivil == item.estadoCivil" ng-repeat="item in staticLookupEstadoCivil" ng-value="item.estadoCivil">{{item.descricao}}</option>
+		    </select>
+           
+        </div>
+
+        <div class="col-md-4">
+            
+          	<label>Departamento:</label>
+  			<select name="estadoCivil" ng-model="funcionario.departamento" class="form-control">
+
+  				<option ng-selected="funcionario.departamento == item" ng-repeat="item in dynamicLookupDepartamento" ng-value="item">{{item.descricao}}</option>
+		    </select>
+           
+        </div>
+
+        <div class="col-sm-4" style="margin-top: 30px;">
+
+          	<label class="col-sm-2 control-label">Sexo:</label>
+               <div class="col-sm-10">
+                  <label class="radio-inline c-radio">
+                     <input id="inlineradio1" type="radio" ng-model="funcionario.sexo" name="i-radio" checked="checked"  value="{{staticLookupSexo[0].sexo}}" />
+                     <span class="fa fa-circle"></span>{{staticLookupSexo[0].descricao}}</label>
+                  <label class="radio-inline c-radio">
+                     <input id="inlineradio2" type="radio" ng-model="funcionario.sexo" name="i-radio" value="{{staticLookupSexo[1].sexo}}" />
+                     <span class="fa fa-circle"></span>{{staticLookupSexo[1].descricao}}</label>
+     
+               </div>
+           
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+    	 <div class="col-md-8">
+            
+          	<label>Observação:</label>
+  			<textarea class="form-control" ng-model="funcionario.observacao" rows="3"></textarea>
+           
+        </div>
+
+    </div>
+
+     <div class="row">
+
+    	 <div class="col-md-8">
+            
+          	<label>Foto:</label>
+  			<input filestyle="" type="file" data-button-text="Selecione" data-class-button="btn btn-default" data-classinput="form-control inline" nv-file-select="" uploader="form.uploader" class="form-control" />
+           
+        </div>
+
+    </div>
+
+
+    
+     
+
+    <br/>
+
+    <div class="form-group">
+
+	  <accordion close-others="oneAtATime">
+	    <accordion-group heading="{{detalhe.titulo}}" ng-repeat="detalhe in detalhes">
+	    	<div ng-include="detalhe.template"></div>
+	    </accordion-group>
+	  </accordion>
+
+  	</div>
+   
+    <br/>
+
+	<div class="form-group">
+	    <div class="col-sm-4">
+	    	<button type="button" class="btn btn-default" ng-click="new();" >Limpar</button>
+	    	<button type="button" class="btn btn-default" ng-click="save();" >Salvar</button>
+	    	<button type="button" class="btn btn-default" ng-click="list();" >Listar</button>
+	    	<button type="button" class="btn btn-default" ng-click="remove();" >Excluir</button>
+	    </div>
+
+	</div>
+
+	
+</div>
